@@ -5,14 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
-//@JsonIgnoreProperties("skates")
 public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +20,7 @@ public class Category implements Serializable {
 
     @OneToMany(mappedBy = "category", cascade = {CascadeType.PERSIST})
     @JsonIgnoreProperties("category")
-    private List<Skate> skates ;
+    private List<Skate> skates;
 
     public Category() {
         this.skates  = new ArrayList<Skate>();
