@@ -48,21 +48,13 @@ public class AdminController {
         return service.save(admin);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody Admin admin, @PathVariable Integer id) {
-        try {
-            Admin existAdmin = service.get(id).get();
-            service.save(admin);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
     @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
     public Admin update(@RequestBody Admin admin) {
         return service.Update(admin);
     }
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable Integer id) {
         return service.delete(id);
     }

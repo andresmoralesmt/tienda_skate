@@ -48,21 +48,13 @@ public class ClientController {
         return service.save(client);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody Client client, @PathVariable Integer id) {
-        try {
-            Client existClient = service.get(id).get();
-            service.save(client);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
     @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
     public Client update(@RequestBody Client client) {
         return service.Update(client);
     }
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable Integer id) {
         return service.delete(id);
     }
